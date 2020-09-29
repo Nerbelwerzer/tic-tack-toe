@@ -26,7 +26,6 @@ class Game
     puts "Greetings, #{@players[0].name}. I see you brought a friend. I'll be needing their name, too:"
     @players.push(Player.new(gets.chomp.capitalize.green, 'O'.green))
     puts "\n\n#{@players[0].name} vs. #{@players[1].name}"
-    binding.pry
   end
 
   def turn_loop(players)   
