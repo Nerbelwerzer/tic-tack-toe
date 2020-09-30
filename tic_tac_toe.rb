@@ -21,8 +21,8 @@ class Game
   end
 
   def get_names
-    puts 'Welcome to Noughts & Crosses. Please enter your name:'
-    @players.push(Player.new(gets.chomp.capitalize.red, 'X'.red))
+    puts 'Welcome to ' + 'Noughts & Crosses'.bold + '. Please enter your name:'
+    @players.push(Player.new(gets.chomp.capitalize.red, 'X'.red)) 
     puts "Greetings, #{@players[0].name}. I see you brought a friend. I'll be needing their name, too:"
     @players.push(Player.new(gets.chomp.capitalize.green, 'O'.green))
     puts "\n\n#{@players[0].name} vs. #{@players[1].name}"
@@ -64,10 +64,10 @@ class Game
     left_diagonal = [@rows[0][0], @rows[1][1], @rows[2][2]]
     right_diagonal = [@rows[0][2], @rows[1][1], @rows[2][0]]
 
-    win(player) if left_diagonal.all?(player.token) || right_diagonal.all?(player.token) #Diagonal vicrory
+    win(player) if left_diagonal.all?(player.token) || right_diagonal.all?(player.token) #Diagonal victory
     @rows.each { |row| win(player) if row.all?(player.token) } #Horizontal victory
     @rows.transpose.each { |row| win(player) if row.all?(player.token) } #Vertical victory
-    draw(player) if @game_over != true && @taken_squares.length > 8
+    draw(player) if @taken_squares.length > 8
   end
 
   def win(player)
@@ -114,7 +114,7 @@ class Player
   attr_reader :name, :token
   attr_accessor :wins
   def initialize(name, token)
-    @name = name.length > 9 ? name.bold : 'Player'.bold # > 9 because those fancy colours add a lot of letters!
+    @name = name.length > 9 ? name[0..16].bold : 'Player'.bold # > 9 because those fancy colours add a lot of letters!
     @token = token
     @wins = 0
   end
